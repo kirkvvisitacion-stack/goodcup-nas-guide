@@ -125,9 +125,11 @@
   .band .lede{margin-top:20px}
   .center{text-align:center}
 
-  /* reveal */
-  .rev{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-  .rev.in{opacity:1;transform:none}
+  /* reveal — visible by DEFAULT so content can never be stuck hidden.
+     The fade-in only engages once JS adds .js-rev to <html>. */
+  .rev{opacity:1;transform:none}
+  .js-rev .rev{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+  .js-rev .rev.in{opacity:1;transform:none}
 
   /* ---------- Compare (Drive vs NAS) ---------- */
   .compare{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px}
@@ -262,7 +264,7 @@
   }
   @media (prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
-    .rev{opacity:1;transform:none}
+    .rev,.js-rev .rev{opacity:1!important;transform:none!important}
   }
 </style>
 </head>
@@ -615,45 +617,48 @@
   document.querySelectorAll('[data-copy-link="invite"]').forEach(function(b){ b.setAttribute('data-copy', INVITE_LINK); });
   /* ==================================================================== */
 
-  // Scroll reveal. Same animation, but made resilient: some in-app browsers
-  // (Telegram, FB, IG) throttle IntersectionObserver or restore scroll before it
-  // runs, which used to leave whole sections stuck invisible. A scroll-position
-  // check guarantees anything at or above the fold is always shown.
+  // Scroll reveal. The fade-in is an enhancement layered on top of content
+  // that is already visible, so a throttled observer or a restored scroll
+  // position in an in-app browser can never leave a section blank.
+  var root=document.documentElement;
   var revs=[].slice.call(document.querySelectorAll('.rev'));
+  var reduced=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function inView(el){
+    var h=window.innerHeight||root.clientHeight;
+    return el.getBoundingClientRect().top < h*0.92;
+  }
   function sweep(){
-    var h=window.innerHeight||document.documentElement.clientHeight;
     for(var i=revs.length-1;i>=0;i--){
-      var el=revs[i];
-      if(el.getBoundingClientRect().top < h*0.92){
-        el.classList.add('in');
-        revs.splice(i,1);
-      }
+      if(inView(revs[i])){ revs[i].classList.add('in'); revs.splice(i,1); }
     }
   }
-  var ticking=false;
-  function onScroll(){
-    if(ticking) return;
-    ticking=true;
-    requestAnimationFrame(function(){ sweep(); ticking=false; });
+  function showEverything(){
+    root.classList.remove('js-rev');   // base state is visible, so this is a hard guarantee
+    revs.length=0;
   }
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        if(e.isIntersecting){
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-          var k=revs.indexOf(e.target); if(k>-1) revs.splice(k,1);
-        }
-      });
-    },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
-    revs.forEach(function(el){io.observe(el);});
+
+  if(!reduced && revs.length){
+    root.classList.add('js-rev');      // arm the animation
+    sweep();                           // reveal whatever is already on screen
+    var ticking=false;
+    function onScroll(){
+      if(ticking) return;
+      ticking=true;
+      requestAnimationFrame(function(){ sweep(); ticking=false; });
+    }
+    window.addEventListener('scroll',onScroll,{passive:true});
+    window.addEventListener('resize',onScroll,{passive:true});
+    window.addEventListener('load',sweep);
+    window.addEventListener('pageshow',sweep);
+    // If anything that should already be on screen has not animated in,
+    // the environment is not cooperating: drop the effect, keep the content.
+    setTimeout(function(){
+      for(var i=0;i<revs.length;i++){
+        if(inView(revs[i])){ showEverything(); return; }
+      }
+    },2200);
   }
-  window.addEventListener('scroll',onScroll,{passive:true});
-  window.addEventListener('resize',onScroll,{passive:true});
-  window.addEventListener('load',sweep);
-  sweep();
-  // Last-resort guarantee: nothing may stay invisible.
-  setTimeout(function(){ revs.slice().forEach(function(el){el.classList.add('in');}); },2500);
 
   // Step check-off (mouse + keyboard)
   document.querySelectorAll('[data-step]').forEach(function(s){
