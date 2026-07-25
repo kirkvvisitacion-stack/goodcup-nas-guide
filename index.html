@@ -615,11 +615,45 @@
   document.querySelectorAll('[data-copy-link="invite"]').forEach(function(b){ b.setAttribute('data-copy', INVITE_LINK); });
   /* ==================================================================== */
 
-  // Scroll reveal
-  var io=new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
-  document.querySelectorAll('.rev').forEach(function(el){io.observe(el);});
+  // Scroll reveal. Same animation, but made resilient: some in-app browsers
+  // (Telegram, FB, IG) throttle IntersectionObserver or restore scroll before it
+  // runs, which used to leave whole sections stuck invisible. A scroll-position
+  // check guarantees anything at or above the fold is always shown.
+  var revs=[].slice.call(document.querySelectorAll('.rev'));
+  function sweep(){
+    var h=window.innerHeight||document.documentElement.clientHeight;
+    for(var i=revs.length-1;i>=0;i--){
+      var el=revs[i];
+      if(el.getBoundingClientRect().top < h*0.92){
+        el.classList.add('in');
+        revs.splice(i,1);
+      }
+    }
+  }
+  var ticking=false;
+  function onScroll(){
+    if(ticking) return;
+    ticking=true;
+    requestAnimationFrame(function(){ sweep(); ticking=false; });
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+          var k=revs.indexOf(e.target); if(k>-1) revs.splice(k,1);
+        }
+      });
+    },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+    revs.forEach(function(el){io.observe(el);});
+  }
+  window.addEventListener('scroll',onScroll,{passive:true});
+  window.addEventListener('resize',onScroll,{passive:true});
+  window.addEventListener('load',sweep);
+  sweep();
+  // Last-resort guarantee: nothing may stay invisible.
+  setTimeout(function(){ revs.slice().forEach(function(el){el.classList.add('in');}); },2500);
 
   // Step check-off (mouse + keyboard)
   document.querySelectorAll('[data-step]').forEach(function(s){
