@@ -4,70 +4,118 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Good Cup NAS</title>
-<meta name="description" content="The Good Cup NAS is our shared file box at the Parañaque HQ. Register in four steps.">
+<meta name="description" content="The Good Cup NAS is our shared file box at the Parañaque HQ. What it is, and how to register in four steps.">
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Good Cup NAS: get in, 4 steps">
-<meta property="og:description" content="Our shared file box at the Parañaque HQ. What it is, and how to register in four steps.">
+<meta property="og:description" content="All our marketing files in one home at the Parañaque HQ. What it is, and how to register in four steps.">
 <meta property="og:site_name" content="Good Cup Coffee Company">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#EDE9E4">
+<meta name="theme-color" content="#241B16">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
+  color-scheme:light;
   --gc-black:#000; --gc-white:#fff; --gc-crema:#EDE9E4; --gc-cashew:#D1C8C1;
-  --gc-butterscotch-deep:#A9641F; --gc-neutral-line:#E6E0DA;
-  --dark:#1B1B1B; --muted:#5f5852;
+  --gc-butterscotch:#E3A36E; --gc-butterscotch-deep:#A9641F;
+  --gc-espresso-ground:#241B16; --gc-espresso-card:#2E221B;
+  --gc-neutral-line:#E6E0DA;
+  --dark:#1B1B1B; --muted:#5f5852; --crema-dim:#B9AEA4;
   --sans:"GC Sans","Good Sans","DM Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 body{background:var(--gc-white);color:var(--gc-black);font-family:var(--sans);font-size:17px;line-height:1.5}
-.wrap{width:100%;max-width:960px;margin:0 auto;padding:0 16px}
+.wrap{width:100%;max-width:960px;margin:0 auto;padding:0 max(16px,env(safe-area-inset-right)) 0 max(16px,env(safe-area-inset-left))}
 a{color:inherit}
 b{font-weight:700}
+h2{font-weight:700;font-size:clamp(24px,4.5vw,32px);line-height:1.15}
+.gloss{display:block;margin-top:10px;font-size:16px;color:#4a443f;max-width:52ch}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+[hidden]{display:none!important}
 
-.hero{background:var(--gc-crema);padding:24px 0 40px}
+/* hero: espresso band from v1, v2 words */
+.hero{background:var(--gc-espresso-ground);color:var(--gc-crema);padding:24px 0 36px}
 .brand{font-weight:700;font-size:17px;margin-bottom:32px}
-.hero-grid{display:grid;gap:28px;grid-template-columns:1fr}
-h1{font-weight:700;font-size:clamp(38px,8vw,68px);line-height:1.04;max-width:12ch}
-.sub{margin-top:16px;font-size:19px;color:var(--dark);max-width:36ch}
-.gloss{display:block;margin-top:10px;font-size:15px;color:var(--muted);max-width:44ch}
-.dev{width:100%;max-width:340px;height:auto;display:block}
+.hero-grid{display:grid;gap:32px;grid-template-columns:1fr}
+h1{font-weight:700;font-size:clamp(34px,8vw,66px);line-height:1.04;max-width:15ch}
+h1 .warm{color:var(--gc-butterscotch)}
+.sub{margin-top:16px;font-size:19px;max-width:38ch}
+.hero .gloss{color:var(--crema-dim);max-width:46ch}
+.hero .row{margin-top:24px}
+.device{max-width:360px}
+.device .where{display:flex;align-items:center;gap:8px;font-weight:700;font-size:17px}
+.device .where svg{width:20px;height:20px;flex:none}
+.device .box{display:block;width:100%;height:auto;margin-top:10px}
+.device .spec{margin-top:10px;line-height:1.6;font-size:15px;color:var(--crema-dim)}
 
+/* buttons: pills only here */
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border-radius:999px;background:var(--gc-black);color:var(--gc-white);font:700 16px var(--sans);text-decoration:none;border:0;cursor:pointer}
+.btn.alt{background:transparent;color:var(--gc-black);box-shadow:inset 0 0 0 1.5px var(--gc-black)}
+.hero .btn{background:var(--gc-crema);color:var(--gc-black)}
+.hero .btn.alt{background:transparent;color:var(--gc-crema);box-shadow:inset 0 0 0 1.5px var(--gc-crema)}
+.btn:focus-visible,.tick:focus-visible{outline:3px solid var(--gc-butterscotch);outline-offset:3px}
+
+/* steps: v2 centrepiece, v1 ticks */
 .steps{list-style:none;padding:8px 0 24px}
 .step{display:grid;grid-template-columns:40px 1fr;column-gap:12px;padding:32px 0;border-top:1px solid var(--gc-neutral-line)}
 .step:first-child{border-top:0}
 .num{font-weight:700;font-size:40px;line-height:1;color:var(--gc-butterscotch-deep)}
-h2{font-weight:700;font-size:clamp(24px,4.5vw,32px);line-height:1.15}
+.step-head h2{min-width:0}
 .step p{margin-top:8px;max-width:56ch}
-.step .gloss{max-width:56ch}
 .warn{font-weight:700}
-.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 26px;border-radius:999px;background:var(--gc-black);color:var(--gc-white);font:700 16px var(--sans);text-decoration:none;border:0;cursor:pointer}
-.btn.alt{background:transparent;color:var(--gc-black);box-shadow:inset 0 0 0 1.5px var(--gc-black)}
-.btn:focus-visible{outline:3px solid var(--gc-cashew);outline-offset:3px}
+.tick{margin-top:12px;flex:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 4px;background:none;border:0;font:500 15px var(--sans);color:var(--muted);cursor:pointer}
+.tick[hidden]{display:none}
+.tick i{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--gc-cashew)}
+.tick svg{width:15px;height:15px;opacity:0}
+.step.done .tick{color:var(--gc-black)}
+.step.done .tick i{background:var(--gc-butterscotch-deep);box-shadow:none}
+.step.done .tick svg{opacity:1}
 
+/* what is it: v1 comparison, then v2 rows */
 .about{background:var(--gc-crema);padding:44px 0 48px}
-.about h2{margin-bottom:8px}
-.about .lead{max-width:52ch}
-.rows{margin-top:20px}
+.about .lead{margin-top:8px;max-width:52ch}
+.vs{display:grid;grid-template-columns:1fr;gap:0 40px;margin-top:24px}
+.vs h3{font-size:19px;font-weight:700;padding-bottom:8px}
+.vs ul{list-style:none}
+.vs li{display:flex;gap:10px;padding:10px 0;border-top:1px solid var(--gc-cashew)}
+.vs li svg{flex:none;width:20px;height:20px;margin-top:3px}
+.vs .them{color:var(--muted);margin-bottom:24px}
+.rows{margin-top:32px}
 .rows div{display:grid;grid-template-columns:1fr;gap:2px;padding:14px 0;border-top:1px solid var(--gc-cashew)}
 .rows dt{font-weight:700}
 .rows dd{color:var(--dark);max-width:56ch}
 
-footer{padding:28px 0 36px;font-size:15px;color:var(--muted)}
+/* why: v1 three points, one quiet row */
+.why{background:var(--gc-espresso-ground);color:var(--gc-crema);padding:44px 0 16px}
+.why ul{list-style:none;display:grid;grid-template-columns:1fr;margin-top:16px}
+.why li{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:16px 0;border-top:1px solid rgba(237,233,228,.16)}
+.why li svg{width:24px;height:24px;margin-top:2px}
+.why h3{font-size:17px;font-weight:700}
+.why p{font-size:16px;color:var(--crema-dim)}
 
+footer{background:var(--gc-espresso-ground);color:var(--gc-crema);padding:20px 0 calc(36px + env(safe-area-inset-bottom));font-size:16px}
+footer a{color:var(--gc-butterscotch)}
+
+@media (max-width:719px){
+  h2{font-size:22px}
+  .device .box{max-width:230px}
+  .hero .sub{font-size:18px}
+}
 @media (min-width:720px){
   .wrap{padding:0 40px}
   .hero{padding:32px 0 64px}
   .hero-grid{grid-template-columns:1.25fr 1fr;align-items:end;gap:48px}
   .step{grid-template-columns:80px 1fr;padding:44px 0}
   .num{font-size:64px}
+  .vs{grid-template-columns:1fr 1fr}
+  .vs .them{margin-bottom:0}
   .rows div{grid-template-columns:200px 1fr;gap:24px}
+  .why ul{grid-template-columns:repeat(3,1fr);gap:0 32px}
 }
 </style>
 </head>
@@ -78,79 +126,104 @@ footer{padding:28px 0 36px;font-size:15px;color:var(--muted)}
     <div class="brand">Good Cup</div>
     <div class="hero-grid">
       <div>
-        <h1>Get into the Good Cup NAS in 4 steps.</h1>
-        <p class="sub">The NAS is our shared file box at the Parañaque HQ. Every farm photo, video, product shot, brand file and campaign lives in it, and you open it from your phone or laptop.</p>
-        <span class="gloss">NAS means Network Attached Storage: hard drives plugged into the office internet, so the whole team can reach them.</span>
+        <h1>All our marketing files, in one <span class="warm">home</span>.</h1>
+        <p class="sub">Every farm photo, video, product shot, brand file and campaign lives in one box at the Parañaque HQ. Four steps and you are in.</p>
+        <div class="row"><a class="btn" href="https://goodcup.aar6.ug.link/invite/?code=0815850964637685&amp;LANG=en-US">Open the invite</a><a class="btn alt" href="#steps">See the 4 steps</a></div>
       </div>
-      <svg class="dev" viewBox="0 0 360 250" role="img" aria-label="The NAS box with four numbered drive bays, at the Parañaque HQ">
-        <text x="20" y="22" font-family="DM Sans,system-ui,sans-serif" font-size="18" font-weight="700" fill="#000">Parañaque HQ</text>
-        <rect x="20" y="36" width="320" height="170" rx="14" fill="#fff" stroke="#000" stroke-width="2"/>
-        <g fill="none" stroke="#000" stroke-width="1.5">
-          <rect x="40" y="58" width="62" height="126" rx="6"/>
-          <rect x="112" y="58" width="62" height="126" rx="6"/>
-          <rect x="184" y="58" width="62" height="126" rx="6"/>
-          <rect x="256" y="58" width="62" height="126" rx="6"/>
-        </g>
-        <g fill="#D1C8C1"><rect x="52" y="74" width="38" height="6" rx="3"/><rect x="124" y="74" width="38" height="6" rx="3"/><rect x="196" y="74" width="38" height="6" rx="3"/><rect x="268" y="74" width="38" height="6" rx="3"/></g>
-        <g font-family="DM Sans,system-ui,sans-serif" font-size="17" font-weight="700" fill="#000" text-anchor="middle">
-          <text x="71" y="166">01</text><text x="143" y="166">02</text><text x="215" y="166">03</text><text x="287" y="166">04</text>
-        </g>
-        <circle cx="328" cy="194" r="4" fill="#A9641F"/>
-        <text x="20" y="238" font-family="DM Sans,system-ui,sans-serif" font-size="17" fill="#1B1B1B">Always on, 14.8 TB, 4 drive bays</text>
-      </svg>
+      <figure class="device">
+        <figcaption class="where">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#E3A36E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Parañaque HQ
+        </figcaption>
+        <svg class="box" viewBox="0 0 400 300" role="img" aria-label="The UGREEN NAS box with four numbered drive bays">
+          <defs>
+            <linearGradient id="fr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3D3029"/><stop offset="1" stop-color="#2E221B"/></linearGradient>
+            <linearGradient id="tp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#55463C"/><stop offset="1" stop-color="#46382F"/></linearGradient>
+            <linearGradient id="sd" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2A1F19"/><stop offset="1" stop-color="#1C1511"/></linearGradient>
+            <linearGradient id="by" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#342821"/><stop offset="1" stop-color="#2A201A"/></linearGradient>
+          </defs>
+          <ellipse cx="190" cy="284" rx="160" ry="12" fill="#000" opacity=".45"/>
+          <polygon points="40,52 280,52 340,20 100,20" fill="url(#tp)"/>
+          <polygon points="280,52 340,20 340,256 280,276" fill="url(#sd)"/>
+          <rect x="40" y="52" width="240" height="224" rx="10" fill="url(#fr)"/>
+          <line x1="120" y1="36" x2="310" y2="36" stroke="#000" stroke-opacity=".25" stroke-width="2"/>
+          <g fill="url(#by)" stroke="#000" stroke-opacity=".3">
+            <rect x="56" y="68" width="46" height="138" rx="7"/><rect x="110" y="68" width="46" height="138" rx="7"/>
+            <rect x="164" y="68" width="46" height="138" rx="7"/><rect x="218" y="68" width="46" height="138" rx="7"/>
+          </g>
+          <g font-family="DM Sans,system-ui,sans-serif" font-size="18" font-weight="700" fill="#D1C8C1" text-anchor="middle">
+            <text x="79" y="96">01</text><text x="133" y="96">02</text><text x="187" y="96">03</text><text x="241" y="96">04</text>
+          </g>
+          <g fill="none" stroke="#6E6156" stroke-width="2">
+            <rect x="71" y="182" width="16" height="14" rx="4"/><rect x="125" y="182" width="16" height="14" rx="4"/>
+            <rect x="179" y="182" width="16" height="14" rx="4"/><rect x="233" y="182" width="16" height="14" rx="4"/>
+          </g>
+          <rect x="56" y="220" width="208" height="42" rx="9" fill="#1C1511"/>
+          <rect x="68" y="232" width="18" height="16" rx="5" fill="none" stroke="#6E6156" stroke-width="2"/>
+          <line x1="77" y1="235" x2="77" y2="242" stroke="#B9AEA4" stroke-width="2"/>
+          <g fill="#E3A36E"><circle cx="106" cy="240" r="3.4"/><circle cx="118" cy="240" r="3.4"/><circle cx="130" cy="240" r="3.4"/><circle cx="142" cy="240" r="3.4"/></g>
+          <g fill="#2E221B" stroke="#55463C"><rect x="176" y="235" width="14" height="10" rx="2"/><rect x="200" y="237" width="14" height="6" rx="3"/><rect x="224" y="235" width="18" height="10" rx="2"/></g>
+          <path d="M50 52.5H270" stroke="#fff" stroke-opacity=".08" stroke-width="1" fill="none"/>
+        </svg>
+        <p class="spec">UGREEN DXP4800 Plus<br>4 drive bays, 14.8 TB<br>Always on at the Parañaque HQ</p>
+      </figure>
     </div>
   </div>
 </header>
 
 <main>
-<div class="wrap">
+<div class="wrap" id="steps">
   <ol class="steps">
 
     <li class="step">
       <span class="num" aria-hidden="true">1</span>
       <div>
-        <h2>Open the invite and sign up</h2>
-        <p>Tap the button, choose Sign up, and use your Good Cup email, or the email you already use for Good Cup work.</p>
-        <span class="gloss">The invite is a private link for making your own login. Sign up means making that login, one time only. It opens in your browser (Safari, Chrome), so there is nothing to install.</span>
+        <div class="step-head"><h2>Open the invite and sign up</h2></div>
+        <p>Tap Open the invite, choose Sign up, and use your Good Cup email, or the email you already use for Good Cup work. It opens in your browser, so there is nothing to install.</p>
+        <span class="gloss">The invite is a private link for making your own login. Sign up means making that login, one time only.</span>
         <div class="row">
           <a class="btn" href="https://goodcup.aar6.ug.link/invite/?code=0815850964637685&amp;LANG=en-US">Open the invite</a>
-          <button class="btn alt" type="button" data-copy="https://goodcup.aar6.ug.link/invite/?code=0815850964637685&amp;LANG=en-US">Copy link</button>
+          <button class="btn alt" type="button" data-copy="https://goodcup.aar6.ug.link/invite/?code=0815850964637685&amp;LANG=en-US" aria-live="polite" hidden>Copy invite link</button>
         </div>
+        <button class="tick" type="button" aria-pressed="false" hidden><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></i><span class="lbl">Mark done</span></button><span class="sr" aria-live="polite"></span>
       </div>
     </li>
 
     <li class="step">
       <span class="num" aria-hidden="true">2</span>
       <div>
-        <h2>Verify your email</h2>
+        <div class="step-head"><h2>Verify your email</h2></div>
         <p>Open the email it sends you and click the link inside. If it is not there after a minute, check your spam folder.</p>
         <span class="gloss">Verify means proving the email is really yours. Spam is the folder where your email app puts messages it is unsure about.</span>
+        <button class="tick" type="button" aria-pressed="false" hidden><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></i><span class="lbl">Mark done</span></button><span class="sr" aria-live="polite"></span>
       </div>
     </li>
 
     <li class="step">
       <span class="num" aria-hidden="true">3</span>
       <div>
-        <h2>Message Kirk on Telegram</h2>
+        <div class="step-head"><h2>Message Kirk on Telegram</h2></div>
         <p>Send Kirk the email you used. <span class="warn">This is the step people miss.</span> You get no access until he gives you your folders.</p>
-        <span class="gloss">Kirk is the admin: the person who looks after the NAS and decides who sees which folders, based on your role. Telegram is the chat app we use at work, and @kirkvee is his username there.</span>
+        <span class="gloss">Kirk is the admin: the person who looks after the NAS and decides who sees which folders, based on your role. Telegram is the chat app we use at work, and @kirkvee is his username there. No Telegram? Message Kirk the way you usually do.</span>
         <div class="row">
-          <a class="btn" href="https://t.me/kirkvee">Message @kirkvee</a>
-          <button class="btn alt" type="button" data-copy="@kirkvee">Copy @kirkvee</button>
+          <a class="btn" href="https://t.me/kirkvee?text=Hi%20Kirk%2C%20I%20signed%20up%20for%20the%20NAS.%20My%20email%20is%3A%20">Message @kirkvee</a>
+          <button class="btn alt" type="button" data-copy="@kirkvee" aria-live="polite" hidden>Copy @kirkvee</button>
         </div>
+        <button class="tick" type="button" aria-pressed="false" hidden><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></i><span class="lbl">Mark done</span></button><span class="sr" aria-live="polite"></span>
       </div>
     </li>
 
     <li class="step">
       <span class="num" aria-hidden="true">4</span>
       <div>
-        <h2>Open GoodNAS and sign in</h2>
+        <div class="step-head"><h2>Open GoodNAS and sign in</h2></div>
         <p>Once Kirk says you are in, open GoodNAS, sign in, then browse and download what you need. The same link works at the office, at home or on the road.</p>
-        <span class="gloss">GoodNAS is the name of our NAS login page, goodcup.aar6.ug.link. Download means saving a copy to your own phone or computer.</span>
+        <span class="gloss">GoodNAS is the name of our NAS login page, <a href="https://goodcup.aar6.ug.link">goodcup.aar6.ug.link</a>. Download means saving a copy to your own phone or computer.</span>
         <div class="row">
           <a class="btn" href="https://goodcup.aar6.ug.link">Open GoodNAS</a>
-          <button class="btn alt" type="button" data-copy="https://goodcup.aar6.ug.link">Copy link</button>
+          <button class="btn alt" type="button" data-copy="https://goodcup.aar6.ug.link" aria-live="polite" hidden>Copy GoodNAS link</button>
         </div>
+        <button class="tick" type="button" aria-pressed="false" hidden><i><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg></i><span class="lbl">Mark done</span></button><span class="sr" aria-live="polite"></span>
       </div>
     </li>
 
@@ -160,15 +233,42 @@ footer{padding:28px 0 36px;font-size:15px;color:var(--muted)}
 <section class="about" aria-labelledby="what">
   <div class="wrap">
     <h2 id="what">What is the NAS?</h2>
-    <p class="lead">Think of Google Drive, except Good Cup owns it, it is private, and there is no monthly fee.</p>
+    <p class="lead">Like Google Drive, but owned by Good Cup.</p>
+    <div class="vs">
+      <div class="them">
+        <h3>Google Drive</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#5f5852" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg><span>Owned by another company</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#5f5852" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg><span>A fee every month</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#5f5852" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 12h12"/></svg><span>Files sit on another company's computers</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Our NAS</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#A9641F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg><span>Owned by Good Cup</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#A9641F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg><span>No monthly fee</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#A9641F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l4 4L19 7"/></svg><span>Files sit in our own box</span></li>
+        </ul>
+      </div>
+    </div>
     <dl class="rows">
-      <div><dt>Where it lives</dt><dd>At the Parañaque HQ, switched on all day. You never need to go there: GoodNAS reaches it from anywhere.</dd></div>
-      <div><dt>The machine</dt><dd>A UGREEN DXP4800 Plus. UGREEN is the brand that makes it.</dd></div>
-      <div><dt>4 drive bays</dt><dd>Slots that each hold one hard drive, numbered 01 to 04. It keeps a safe copy, so one drive failing does not lose any work.</dd></div>
-      <div><dt>14.8 TB</dt><dd>Its total space. TB means terabyte, about 1,000 GB, which is room for years of footage.</dd></div>
-      <div><dt>What you see</dt><dd>Only the folders Kirk gives you, based on your role.</dd></div>
+      <div><dt>Where it lives</dt><dd>NAS means Network Attached Storage: hard drives plugged into the office internet, so the whole team can reach them. Ours is at the Parañaque HQ, switched on all day.</dd></div>
+      <div><dt>4 drive bays</dt><dd>Made by UGREEN. Slots that each hold one hard drive, numbered 01 to 04. It keeps a safe copy, so one drive failing does not lose any work.</dd></div>
+      <div><dt>14.8 TB</dt><dd>Its total space. TB means terabyte, a very large amount of space, room for years of footage.</dd></div>
       <div><dt>App</dt><dd>Not needed. A UGREEN app exists if you want one, but the browser does everything.</dd></div>
     </dl>
+  </div>
+</section>
+
+<section class="why" aria-labelledby="whyh">
+  <div class="wrap">
+    <h2 id="whyh">Why we have one</h2>
+    <ul>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#E3A36E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><div><h3>Everything in one place</h3><p>Farm trips, products, cafe and campaigns in clear folders, with no hunting across laptops.</p></div></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#E3A36E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 4v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg><div><h3>Private and owned</h3><p>It belongs to Good Cup, and you only see the folders meant for your role.</p></div></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="#E3A36E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg><div><h3>Always on</h3><p>Open it at the office, at home or on the road through the same link.</p></div></li>
+    </ul>
   </div>
 </section>
 </main>
@@ -178,13 +278,43 @@ footer{padding:28px 0 36px;font-size:15px;color:var(--muted)}
 </footer>
 
 <script>
-document.querySelectorAll('[data-copy]').forEach(function(b){
-  b.addEventListener('click',function(){
-    var t=b.getAttribute('data-copy'),o=b.textContent;
-    function done(){b.textContent='Copied';setTimeout(function(){b.textContent=o},1600)}
-    try{navigator.clipboard.writeText(t).then(done,function(){})}catch(e){}
+(function(){
+  function fallback(t){
+    try{var x=document.createElement('textarea');x.value=t;x.setAttribute('readonly','');x.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(x);x.select();x.setSelectionRange(0,t.length);var ok=document.execCommand('copy');document.body.removeChild(x);return ok}catch(e){return false}
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.hidden=false;
+    var o=b.textContent;
+    b.addEventListener('click',function(){
+      var t=b.getAttribute('data-copy');
+      function say(m){b.textContent=m;setTimeout(function(){b.textContent=o},2200)}
+      function fail(){say(fallback(t)?'Copied':'Press and hold the link above')}
+      try{
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){say('Copied')},fail)}else{fail()}
+      }catch(e){fail()}
+    });
   });
-});
+  var saved=[];
+  try{saved=JSON.parse(localStorage.getItem('gcnas-steps')||'[]')||[]}catch(e){saved=[]}
+  var steps=document.querySelectorAll('.step');
+  function save(){
+    var on=[];steps.forEach(function(s,i){if(s.classList.contains('done'))on.push(i)});
+    try{localStorage.setItem('gcnas-steps',JSON.stringify(on))}catch(e){}
+  }
+  function paint(s,i,on,announce){
+    var b=s.querySelector('.tick'),l=b.querySelector('.lbl'),r=s.querySelector('.sr');
+    s.classList.toggle('done',on);
+    b.setAttribute('aria-pressed',on?'true':'false');
+    l.textContent=on?'Done':'Mark done';
+    r.textContent=announce&&on?'Step '+(i+1)+' done':'';
+  }
+  steps.forEach(function(s,i){
+    var b=s.querySelector('.tick');if(!b)return;
+    b.hidden=false;
+    paint(s,i,saved.indexOf(i)>-1,false);
+    b.addEventListener('click',function(){paint(s,i,!s.classList.contains('done'),true);save()});
+  });
+})();
 </script>
 </body>
 </html>
