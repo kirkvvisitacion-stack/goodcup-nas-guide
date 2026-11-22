@@ -117,6 +117,13 @@ footer a{color:var(--gc-butterscotch)}
   .rows div{grid-template-columns:200px 1fr;gap:24px}
   .why ul{grid-template-columns:repeat(3,1fr);gap:0 32px}
 }
+
+.findfile{padding:8px 0 40px}
+.ffcard{display:flex;gap:20px;align-items:flex-start;background:#EDE9E4;color:#000;border-radius:24px;padding:28px 24px}
+.ffcard svg{flex:0 0 52px;width:52px;height:52px}
+.ffcard h2{font-size:clamp(22px,4vw,30px);line-height:1.15;margin-bottom:8px}
+.ffcard p{color:#1B1B1B;margin-bottom:6px}
+@media (max-width:560px){.ffcard{flex-direction:column}}
 </style>
 </head>
 <body data-gc-text-led>
@@ -218,6 +225,7 @@ footer a{color:var(--gc-butterscotch)}
       <div>
         <div class="step-head"><h2>Open GoodNAS and sign in</h2></div>
         <p>Once Kirk says you are in, open GoodNAS, sign in, then browse and download what you need. The same link works at the office, at home or on the road.</p>
+        <span class="gloss">Not sure where a file is? Use the NAS file search below, then follow its path in GoodNAS.</span>
         <span class="gloss">GoodNAS is the name of our NAS login page, <a href="https://goodcup.aar3.ug.link">goodcup.aar3.ug.link</a>. Download means saving a copy to your own phone or computer.</span>
         <div class="row">
           <a class="btn" href="https://goodcup.aar3.ug.link">Open GoodNAS</a>
@@ -229,6 +237,22 @@ footer a{color:var(--gc-butterscotch)}
 
   </ol>
 </div>
+
+<section class="findfile" aria-labelledby="ff">
+  <div class="wrap">
+    <div class="ffcard">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="21" cy="21" r="11"/><path d="M29.5 29.5L40 40"/><path d="M16 21h10"/></svg>
+      <div>
+        <h2 id="ff">Looking for a file? Search it first.</h2>
+        <p>Type a farm, a place or a subject in the NAS file search and it shows exactly where the file lives. Copy the path, then open it here in GoodNAS. It opens with your Good Cup account.</p>
+        <div class="row">
+          <a class="btn" href="https://claude.ai/artifact/KAkpitAmNrKVxAUEHrXskJ">Search the NAS</a>
+          <a class="btn alt" href="https://kirkvvisitacion-stack.github.io/studio/handoff/nas-search.html">Let your Claude search it</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section class="about" aria-labelledby="what">
   <div class="wrap">
